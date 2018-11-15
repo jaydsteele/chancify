@@ -27,7 +27,6 @@ function isThisFile(filename) {
  */
 function loadDescriptors() {
   const allFiles = fs.readdirSync(__dirname)
-  console.log('all', allFiles)
   const descriptors = _.chain(allFiles)
     .filter(file => (isFile(file) && !isTestFile(file) && !isThisFile(file)))
     .map(file => ({
