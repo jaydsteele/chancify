@@ -8,8 +8,9 @@
   "scripts": {
     "start": "export NODE_ENV=development && nodemon index.js",
     "lint": "eslint server; exit 0",
-    "test": "export NODE_ENV=testing && mocha -R spec 'app/**/**.test.js",
-    "coverage": "istanbul cover _mocha -- -R 'app/**/**.test.js"
+    "test": "export NODE_ENV=testing && mocha -R spec 'app/**/**.test.js'",
+    "test:watch": "export NODE_ENV=testing && mocha --watch -R spec 'app/**/**.test.js'",
+    "coverage": "istanbul cover _mocha -- -R 'app/**/**.test.js'"
   },
   "repository": {
     "type": "git",
