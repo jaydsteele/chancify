@@ -6,10 +6,10 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "start": "export NODE_ENV=development && node index.js",
+    "start": "export NODE_ENV=development && nodemon index.js",
     "lint": "eslint server; exit 0",
-    "test": "export NODE_ENV=testing && mocha -R spec 'test/**/**.test.js",
-    "coverage": "istanbul cover _mocha -- -R 'test/**/**.test.js"
+    "test": "export NODE_ENV=testing && mocha -R spec 'app/**/**.test.js",
+    "coverage": "istanbul cover _mocha -- -R 'app/**/**.test.js"
   },
   "repository": {
     "type": "git",
@@ -24,7 +24,9 @@
     "eslint": "^5.9.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
+    "istanbul": "^0.4.5",
     "mocha": "^5.2.0",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.6"
   }
 }
