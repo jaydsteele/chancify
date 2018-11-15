@@ -1,7 +1,7 @@
 const _ = require('lodash')
 
 // Set an upper bound on the size of a list resource
-const MAX_LIST_RESOURCE_SIZE = 10000
+const MAX_LIST_RESOURCE_SIZE = 1000
 
 function generateResource(template) {
   function valueCloner(value) {
