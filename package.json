@@ -1,0 +1,30 @@
+{
+  "name": "chancify",
+  "version": "1.0.0",
+  "description": "Serves up object and list resources with randomly generated data",
+  "author": "Jay Steele <jaydsteele@gmail.com>",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "start": "export NODE_ENV=development && node index.js",
+    "lint": "eslint server; exit 0",
+    "test": "export NODE_ENV=testing && mocha -R spec 'test/**/**.test.js",
+    "coverage": "istanbul cover _mocha -- -R 'test/**/**.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaydsteele/chancify.git"
+  },
+  "dependencies": {
+    "chancejs": "0.0.8",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "mocha": "^5.2.0",
+    "morgan": "^1.9.1"
+  }
+}

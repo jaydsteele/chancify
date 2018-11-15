@@ -1,2 +1,2 @@
 # chancify
-A Docker container/service that serves up object and list resources with randomly generated data
+Serves up object and list resources with randomly generated data
