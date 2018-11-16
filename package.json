@@ -10,7 +10,11 @@
     "lint": "eslint server; exit 0",
     "test": "export NODE_ENV=testing && mocha -R spec 'app/**/**.test.js'",
     "test:watch": "export NODE_ENV=testing && mocha --watch -R spec 'app/**/**.test.js'",
-    "coverage": "istanbul cover _mocha -- -R 'app/**/**.test.js'"
+    "coverage": "istanbul cover _mocha -- -R 'app/**/**.test.js'",
+    "docker:build": "docker build -t chancify .",
+    "docker:run": "docker run --name chancify -p 7001:7000 -d chancify",
+    "docker:stop": "docker stop chancify",
+    "docker:remove": "docker remove chancify"
   },
   "repository": {
     "type": "git",
@@ -21,7 +25,8 @@
     "chance": "^1.0.16",
     "express": "^4.16.4",
     "lodash": "^4.17.11",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.6"
   },
   "devDependencies": {
     "chai": "^4.2.0",
@@ -31,7 +36,6 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
     "istanbul": "^0.4.5",
-    "mocha": "^5.2.0",
-    "nodemon": "^1.18.6"
+    "mocha": "^5.2.0"
   }
 }
