@@ -82,7 +82,7 @@ module.exports = simpleUser
 
 ## Descriptors
 
-The descriptors are really easy to build and deploy. Create a node file in the descriptors directory that exports a function. This function takes a chance object (more on this later) and returns a "template" of the resource you want to produce.
+The descriptors are really easy to build and deploy. Create a node file in the descriptors directory that exports a function. This function gets passed a chance object (more on this later) and returns a "template" of the resource you want to produce.
 
 The fields of the template can be constants:
 
@@ -144,7 +144,7 @@ To request a list of random objects, you call the list endpoint:
 
     % curl http://localhost:7000/list/my_crazy_object
 
-When requests a list, you can specify how many are returned using the paging query parameters (more on this below). A small number of items at the start of the random data set is returned by default.
+When requesting a list, you can specify how many are returned using the paging query parameters (more on this below). A small number of items at the start of the random data set is returned by default.
 
 ## Randomness and REST: seeding the API calls
 
