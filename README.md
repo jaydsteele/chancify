@@ -194,5 +194,5 @@ Let me know if you use the library and find it useful. Feedback & suggestions ar
 
 # License
 
-See [LICENSE.md](LICENSE.md)
+See [LICENSE](LICENSE)
 
