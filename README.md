@@ -3,18 +3,12 @@ Chancify
 
 A quick and easy service to generate up object and list resources with randomly generated data from [chancejs.com](https://chancejs.com)
 
-# What's It For?
-
-You know when you have a great idea for a web app, but you really don't want to spend a kazillion hours writing a server or mocking up data to demo the UI?
-
-Chancify lets you quickly configure and run a server that serves up random objects or lists in the exact format you're dreaming of.
-
 # Table of Contents
 
 <!-- TOC -->
 
-- [What's It For?](#whats-it-for)
 - [Table of Contents](#table-of-contents)
+- [What's It For?](#whats-it-for)
 - [The 5 Minute Tutorial](#the-5-minute-tutorial)
   - [Step 1: Write a resource descriptor](#step-1-write-a-resource-descriptor)
   - [Step 2: Restart the server](#step-2-restart-the-server)
@@ -30,6 +24,12 @@ Chancify lets you quickly configure and run a server that serves up random objec
 - [License](#license)
 
 <!-- /TOC -->
+
+# What's It For?
+
+You know when you have a great idea for a web app, but you really don't want to spend a kazillion hours writing a server or mocking up data to demo the UI?
+
+Chancify lets you quickly configure and run a server that serves up random objects or lists in the exact format you're dreaming of.
 
 # The 5 Minute Tutorial
 
