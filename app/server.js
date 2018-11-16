@@ -21,11 +21,8 @@ require('../config/middleware')(app)
 // Get the chance object for the request, using the seed value if it has been
 // provided.
 function getChance(req) {
-  // need to do this special check to invoke seedless version of Chance
-  // without parameters to get an unseeded chance generator
   const { seed } = req.query
-  if (!seed) return new Chance()
-  return new Chance(seed)
+  return new Chance(seed || 0)
 }
 
 // Get the resource descriptor function call for this request from the resourceName

@@ -130,5 +130,12 @@ describe('generate', () => {
       assert.equal(listResource[0].value, 5)
       assert.equal(listResource[4].value, 9)
     })
+    it('should throw when max list resource size is too big', () => {
+      assert.throws(() => {
+        generateListResource({ someValue: 1 }, {
+          max: 1000000000,
+        })
+      })
+    })
   })
 })
