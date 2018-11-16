@@ -1,3 +1,4 @@
+
 function probability(chance, value, trueValue, falseValue) {
   if (chance.bool({ likelihood: value })) {
     return trueValue
@@ -5,7 +6,11 @@ function probability(chance, value, trueValue, falseValue) {
   return falseValue || null
 }
 
-function sampleUser1(chance) {
+/**
+ * A sample descriptor that returns a typical user object.
+ * This descriptor also shows how to conditionally return some parts of the object.
+ */
+function sampleUser(chance) {
   return {
     id: () => chance.guid(),
     firstName: () => chance.first(),
@@ -20,4 +25,4 @@ function sampleUser1(chance) {
   }
 }
 
-module.exports = sampleUser1
+module.exports = sampleUser
