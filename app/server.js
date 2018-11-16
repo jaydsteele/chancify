@@ -1,6 +1,8 @@
 const express = require('express')
 const Chance = require('chance')
-const loadDescriptors = require('./descriptors/load_descriptors')
+const path = require('path')
+const loadDescriptors = require('./load_descriptors')
+
 require('../config/config')
 const {
   generateResource,
@@ -8,50 +10,60 @@ const {
 } = require('./generate')
 
 const app = express()
-const descriptors = loadDescriptors()
+const descriptorDir = path.join(__dirname, 'descriptors')
+const descriptors = loadDescriptors(descriptorDir)
 
 console.log('The following resource descriptors were loaded:')
 console.log(Object.keys(descriptors))
 
 require('../config/middleware')(app)
 
-function makeChance(seed) {
-  // strangely need to do this special check to invoke seedless version of Chance
+// Get the chance object for the request, using the seed value if it has been
+// provided.
+function getChance(req) {
+  // need to do this special check to invoke seedless version of Chance
   // without parameters to get an unseeded chance generator
+  const { seed } = req.query
   if (!seed) return new Chance()
   return new Chance(seed)
 }
 
-app.get('/item/:resourceName', (req, res, next) => {
+// Get the resource descriptor function call for this request from the resourceName
+// Relies on the :resourceName param in the request URL being there
+function getDescriptor(req) {
   const { resourceName } = req.params
-  const descriptor = descriptors[resourceName]
+  return descriptors[resourceName]
+}
+
+// Get the options for the list resource (paging)
+function getListResourceOptions(req) {
+  return {
+    skip: parseInt(req.query.skip, 10) || undefined,
+    limit: parseInt(req.query.limit, 10) || undefined,
+    max: parseInt(req.query.max, 10) || undefined,
+  }
+}
+
+// the endpoint for a single resource item
+app.get('/item/:resourceName', (req, res, next) => {
+  const chance = getChance(req)
+  const descriptor = getDescriptor(req)
   if (!descriptor) {
     return next()
   }
-  const { seed } = req.query
-  const chance = makeChance(seed)
   const resource = generateResource(descriptor(chance))
   return res.send(resource)
 })
 
+// the endpoint for pages lists of a resource item
 app.get('/list/:resourceName', (req, res, next) => {
-  const { resourceName } = req.params
-  const descriptor = descriptors[resourceName]
+  const chance = getChance(req)
+  const descriptor = getDescriptor(req)
   if (!descriptor) {
     return next()
   }
-  const {
-    seed,
-    skip,
-    limit,
-    max,
-  } = req.query
-  const chance = makeChance(seed)
-  const resource = generateListResource(descriptor(chance), {
-    skip: parseInt(skip, 10) || undefined,
-    limit: parseInt(limit, 10) || undefined,
-    max: parseInt(max, 10) || undefined,
-  })
+  const options = getListResourceOptions(req)
+  const resource = generateListResource(descriptor(chance), options)
   return res.send(resource)
 })
 

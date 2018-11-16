@@ -3,18 +3,13 @@ const _ = require('lodash')
 const path = require('path')
 
 // returns true if filename is a file (and not a directory)
-function isFile(filename) {
-  return fs.lstatSync(path.join(__dirname, filename)).isFile()
+function isFile(directory, filename) {
+  return fs.lstatSync(path.join(directory, filename)).isFile()
 }
 
 // returns true if filename is a test file
 function isTestFile(filename) {
   return _.endsWith(filename, '.test.js')
-}
-
-// return true if filename is this file
-function isThisFile(filename) {
-  return path.join(__dirname, filename) === __filename
 }
 
 /**
@@ -23,15 +18,16 @@ function isThisFile(filename) {
  * descriptors = {
  *   sample_user_1: function() {...}
  * }
+ * @param directory the directory to fetch descriptors from
  * @returns A hashmap of the resource descriptors
  */
-function loadDescriptors() {
-  const allFiles = fs.readdirSync(__dirname)
+function loadDescriptors(directory) {
+  const allFiles = fs.readdirSync(directory)
   const descriptors = _.chain(allFiles)
-    .filter(file => (isFile(file) && !isTestFile(file) && !isThisFile(file)))
+    .filter(file => (isFile(directory, file) && !isTestFile(file)))
     .map(file => ({
       name: path.basename(file, '.js'),
-      func: require(path.join(__dirname, file)) // eslint-disable-line
+      func: require(path.join(directory, file)) // eslint-disable-line
     }))
     .keyBy('name')
     .mapValues(object => object.func)
