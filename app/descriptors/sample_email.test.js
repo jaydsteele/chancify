@@ -7,7 +7,7 @@ const chance = new Chance(1234)
 
 describe('sample_email', () => {
   it('should generate a sample_email', () => {
-    const user = generateResource(sampleEmail(chance))
-    assert.isString(user)
+    const result = generateResource(sampleEmail(chance))
+    assert.isString(result)
   })
 })

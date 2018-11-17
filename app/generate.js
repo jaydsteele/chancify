@@ -1,19 +1,14 @@
 const _ = require('lodash')
+const cloneDeep = require('./cloneDeep')
 
 // Set an upper bound on the size of a list resource
 const MAX_LIST_RESOURCE_SIZE = 1000
 
 function generateResource(template) {
-  function valueCloner(value) {
-    if (_.isFunction(value)) {
-      return value()
-    }
-    return undefined
-  }
   if (!template) {
     return undefined
   }
-  return _.cloneDeepWith(template, valueCloner)
+  return cloneDeep(template)
 }
 
 function generateListResource(template, options) {
